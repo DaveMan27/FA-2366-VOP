@@ -1,0 +1,90 @@
+<script src = "https://code.jquery.com/jquery-3.2.1.min.js" integrity = "sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin = "anonymous"></script>
+
+ <style type="text/css">
+  @import url('https://fonts.cdnfonts.com/css/sf-pro-display');
+
+  .wForm, .label, .inputWrapper, .wFormContainer {
+        font-family: 'SF Pro Display', sans-serif !important;
+  }
+
+  .wfPageNextButton, .primaryAction {
+    background-color: #83D1D8 !important;
+    font-family: 'SF Pro Display', sans-serif !important;
+    font-weight: bold;
+  }
+
+  .wfPagePreviousButton {
+    background-color: #F58220 !important;    
+    font-family: 'SF Pro Display', sans-serif !important;
+    font-weight: bold;
+  }
+
+.wFormContainer .supportInfo {
+    display: none;
+ }
+  
+   
+ </style> 
+
+<script>
+  $(document).ready(function() {
+      $('#tfa_2').css('display','none');
+      $('.wForm').prepend($("#tfa_2").html());
+      $('.oneField').first().css('display', 'none');
+  });  
+  
+  jQuery(document).ready(function ($) {
+    cbxIsrael = $("#tfa_1281").find('input[type=checkbox]');
+
+     ////////////////////////////////////////////////////////////////////////////////////////////////////
+   // Events for above (click) - Relationship to Israel
+   ////////////////////////////////////////////////////////////////////////////////////////////////////
+   // on each click on checkbox we check that no more than 3 checkboxes is selected 
+   cbxIsrael.click(function() {
+    console.log($(this));
+    const howManyChecked = $("#tfa_1281").find('input[type=checkbox]:checked').length;
+   
+  	if (howManyChecked > 3)
+  	{
+  		return false;
+  	}
+    
+  });
+
+  cbxJudaism = $("#tfa_1291").find('input[type=checkbox]');
+    console.log(cbxJudaism);
+
+     ////////////////////////////////////////////////////////////////////////////////////////////////////
+   // Events for above (click) - Relationship to Judaism
+   ////////////////////////////////////////////////////////////////////////////////////////////////////
+   // on each click on checkbox we check that no more than 3 checkboxes is selected
+   cbxJudaism.click(function() {
+    console.log($(this));
+    const howManyChecked = $("#tfa_1291").find('input[type=checkbox]:checked').length;
+   
+  	if (howManyChecked > 3)
+  	{
+  		return false;
+  	}
+    
+  }); 
+
+    cbxEducation = $("#tfa_1209").find('input[type=checkbox]').not('#tfa_2438');
+    // Get (above) "None" checkbox alone (we need to check when prepopulated if it's already checked)
+    $("#tfa_2438").click(function() {
+	if (this.checked) {
+          cbxEducation.each(function () {
+              $(this).prop('checked',false);
+              $(this).prop('disabled',true);
+          });
+    }
+    else
+    {
+        cbxEducation.each(function () {
+            $(this).prop('disabled',false);
+        });
+     }
+  });
+});
+
+</script>
